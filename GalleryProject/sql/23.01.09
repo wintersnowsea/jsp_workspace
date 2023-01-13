@@ -1,0 +1,11 @@
+getter/setter
+(lombok) -jar
+			- eclipse 플러그인
+			
+(upload 라이브러리)
+1) oreilly - jsp/servlet 예제 (upload 라이브러리)
+			  cos.jar
+			  http://servlets.com/cos/
+
+2)apache.org - fileupload
+					https://commons.apache.org/
