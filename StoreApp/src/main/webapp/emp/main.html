@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>main</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+
+//부서명 select박스에 출력
+function createOption(deptnoList){
+	let op="<option value='0'>선택하세요</option>";
+	
+	for(let i=0;i<deptnoList.length;i++){
+		let deptno= deptnoList[i];
+		op+="<option value='"+deptno.deptno+"'>"+deptno.dname+"</option>";
+	}
+	$("#deptno").html(op);
+}
+function getDeptnoList(){
+	let xhttp=new XMLHttpRequest(); //ajax의 비동기 통신 객체
+	xhttp.open("GET", "/emp/deptno_list.jsp");
+	xhttp.onreadystatechange=function(){
+		if(this.readyState==4 && this.status==200){
+			let deptno_list=JSON.parse(this.responseText);
+			console.log("deptno is ",deptno_list);
+			createOption(deptno_list);
+		}
+	}
+	xhttp.send();
+}
+
+//사원정보 table에 출력
+function createEmpList(empList){
+	let table="";
+	for(let i=0;i<empList.length;i++){
+		let emp=empList[i];
+		table+="<tr>";
+		table+="<td>"+emp.empno+"</td>";
+		table+="<td>"+emp.ename+"</td>";
+		table+="<td>"+emp.job+"</td>";
+		table+="<td>"+emp.mgr+"</td>";
+		table+="<td>"+emp.hiredate.substr(0,10)+"</td>";
+		table+="<td>"+emp.sal+"</td>";
+		table+="<td>"+emp.comm+"</td>";
+		table+="<td>"+emp.deptno+"</td>";
+		table+="</tr>";
+	}
+	$("#emp").html(table);
+}
+function getEmpList(){
+	let xhttp=new XMLHttpRequest();
+	xhttp.open("GET", "/emp/emp_list.jsp");
+	xhttp.onreadystatechange=function(){
+		if(this.readyState==4 && this.status==200){
+			let emp_list=JSON.parse(this.responseText);
+			console.log("emp is ", emp_list);
+			createEmpList(emp_list);
+		}
+	}
+	xhttp.send();
+}
+
+function getEmpChange() {
+	let deptno=$("#deptno option:selected").val();
+	console.log($("#deptno option:selected").val());
+	let xhttp=new XMLHttpRequest();
+	xhttp.open("GET", "/emp/emp_change.jsp?deptno="+deptno);
+	xhttp.onreadystatechange=function(){
+		if(this.readyState==4 && this.status==200){
+			let emp_list=JSON.parse(this.responseText);
+			console.log("emp is ", emp_list);
+			createEmpList(emp_list);
+		}
+	}
+	xhttp.send();
+}
+
+$(function(){
+	$("#deptno").change(function() {
+		if($("#deptno option:selected").val()==0){
+			getEmpList();
+		}else{
+			getEmpChange();			
+		}
+	});
+	getDeptnoList();
+	getEmpList();
+});
+
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="row mt-2">
+			<!-- 좌측 -->
+			<div class="col-md-2 border width:4px">
+				<div class="form-group mt-2">
+					<select class="form-control" id="deptno"></select>
+				</div>
+			</div>
+			<!-- 우측 -->
+			<div class="col-md-10 border width:8px">
+				<div class="form-group mt-2" style="overflow: scroll">
+					<table class="table">
+						<thead class="thead-light">
+							<tr>
+								<th>EMPNO</th>
+								<th>ENAME</th>
+								<th>JOB</th>
+								<th>MGR</th>
+								<th>HIREDATE</th>
+								<th>SAL</th>
+								<th>COMM</th>
+								<th>DEPTNO</th>
+							</tr>
+						</thead>
+						<tbody id="emp">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
