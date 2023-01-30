@@ -1,0 +1,13 @@
+JQuery - js 라이브러리 : 코드가 짧아진다
+Bootstrap -(프레임웍) html, css, js = dynamic html
+React - UI를  재사용하기 위한 프론트 기술
+         - FaceBook 개발자들이 만든 기술
+         - SPA 제작시 유용하다
+
+//23.01.17 오전 과제
+ReactNotice 프로젝트명
+oracle notice 테이블 만들기
+/webapp/notice 디렉토리 만들기
+그 안에 main.html 에서 구현하기
+jquery+jqueryAjax+bootstrap+React (프론트 기술)
+jsp+DAO+mybatis(서버기술)
