@@ -8,7 +8,7 @@
 <script type="text/javascript">
 function send() {
 	//서버에 폼 전송하기
-	form1.action="/blood.do";
+	form1.action="/movie.do";
 	form1.method="post";
 	form1.submit();
 }
@@ -16,11 +16,11 @@ function send() {
 </head>
 <body>
 	<form name="form1">
-		<select name="blood">
-			<option value="A">A형</option>
-			<option value="B">B형</option>
-			<option value="O">O형</option>
-			<option value="AB">AB형</option>
+		<select name="movie">
+			<option value="아바타">아바타</option>
+			<option value="상견니">상견니</option>
+			<option value="나의소녀시대">나의소녀시대</option>
+			<option value="범죄도시">범죄도시</option>
 		</select>
 	</form>
 	<p>
@@ -44,19 +44,4 @@ String 부트
  M(로직) : JavaEE에서 .java(class)에 적절함
  V(디자인) : JSP에 적절함
  C(컨트롤러) : Servlet에 적절함 //M과 V를 분리시키는 구분자
- 유지보수성을 높이기 위한 개발원칙 디자인과 로직 불리
- -------------------------------------------------------------------
- **단점
- 1) 요청에 대해서 1:1로 서블릿을 처리하면 너무나 많은 매핑이 필요하다
- 	- web.xml이 비대해지므로 유지보수성이 떨어짐
   -->
-  
-  <!-- 
-  컨트롤러의 5대 업무
-  1) 요청을 받는다
-  2) 요청을 분석
-  ------------위는 전문성이 없는 컨트롤러
-  3) 알맞는 로직 객체에 일 시킨다(하위 컨트롤러 가)
-  4) 결과가 있을 경우엔 결과저장 (하위 컨트롤러 가 : 웹인 경우 session, request)
-  5) 결과 보여주기 (.jsp) -(입구 컨트롤러)
-   -->
