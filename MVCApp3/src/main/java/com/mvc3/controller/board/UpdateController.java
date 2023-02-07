@@ -28,6 +28,7 @@ public class UpdateController implements Controller{
 		
 		boardDAO.update(board);
 		
+		//4단계
 		request.setAttribute("board", board); //수정 dto저장
 		
 		sqlSession.commit();

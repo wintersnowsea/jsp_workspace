@@ -48,6 +48,9 @@
 		$("#bt_edit").click(function () {
 			edit();
 		});
+		$("#bt_list").click(function () {
+			$(location).attr("href","/board/list.do");
+		});
 	});
 </script>
 </head>

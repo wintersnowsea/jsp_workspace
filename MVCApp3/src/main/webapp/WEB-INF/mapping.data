@@ -16,6 +16,11 @@
 /board/delete.do=com.mvc3.controller.board.DeleteController
 /board/update.do=com.mvc3.controller.board.UpdateController
 
+#사원관련 컨트롤러 매핑
+/emp/regist.do=com.mvc3.controller.emp.RegistController
+/emp/list.do=com.mvc3.controller.emp.ListController
+/emp/delete.do=com.mvc3.controller.emp.DeleteController
+
 #뷰 매핑
 /blood/view=/blood/result.jsp
 /movie/view=/movie/result.jsp
@@ -26,3 +31,8 @@
 /board/view/detail=/board/detail.jsp
 /board/view/delete=/board/list.do
 /board/view/update=/board/detail.jsp
+
+#사원관련 뷰 매핑
+/emp/view/regist=/emp/list.do
+/emp/view/list=/emp/list.jsp
+/emp/view/delete=/emp/list.do
